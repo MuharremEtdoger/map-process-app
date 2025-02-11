@@ -1,0 +1,27 @@
+.map-process-card{
+    -webkit-transition: background-color .3s ease-out;
+    -moz-transition: background-color .3s ease-out;
+    -o-transition: background-color .3s ease-out;    
+    transition: background-color .3s ease-out;
+    cursor:pointer;
+}
+.map-process-card i{
+    font-size: 34px;
+    opacity: .8;
+    transition: all .3s;    
+}
+.blockquote-footer::before {
+    color: #fff;
+    opacity: .7;
+}
+.map-process-card p{
+    font-size: 17px;
+    margin-top: 17px;    
+}
+.map-process-card small{
+    color: #fff;
+    opacity: .7;   
+}
+.top-container{
+    margin-top: 30px;
+}
