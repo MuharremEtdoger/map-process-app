@@ -2,7 +2,7 @@
 <div class="container top-container">
     <div class="row">
         <div class="col-md-4">
-            <a class="card bg-info text-white text-center p-3 map-process-card">
+            <a href="{{ url('/add-location') }}" class="card bg-info text-white text-center p-3 map-process-card">
                 <blockquote class="blockquote mb-0">
                     <i class="bi bi-plus-square"></i>
                     <p>Konum eklemek için tıklayın</p>
