@@ -107,5 +107,11 @@ class LocationsController extends Controller
            echo 'Token Geçersiz';
            exit;
         }       
-    }    
+    }  
+    function listLocations(){
+        $_per_page=10;
+        $locations = Locations::paginate($_per_page);
+        $site_title='Konum Listesi';
+        return view('locations.list',['locations'=>$locations,'site_title'=>$site_title]); 
+    }  
 }

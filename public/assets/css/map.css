@@ -25,3 +25,24 @@
 .top-container{
     margin-top: 30px;
 }
+.pagination-prev-next-area{
+    display: inline-block;
+    float: right;
+    width: 222px;
+}
+.pagination-prev-next-number-area{
+    display: inline-block;
+    float: left;    
+}
+.pagination-prev-next-number-area svg{
+    display: inline-block;
+    width: 20px;
+    vertical-align: sub;    
+}
+.site-pagination{
+    display: inline-block;
+    width: 100%;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    margin-top: 10px;
+}

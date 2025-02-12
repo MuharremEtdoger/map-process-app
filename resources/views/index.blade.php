@@ -15,7 +15,7 @@
             </a>            
         </div>
         <div class="col-md-4">
-            <a class="card bg-warning text-white text-center p-3 map-process-card">
+            <a href="{{ url('/locations') }}"  class="card bg-warning text-white text-center p-3 map-process-card">
                 <blockquote class="blockquote mb-0">
                     <i class="bi bi-geo-alt"></i>
                     <p>Konumları görüntülemek için tıklayın</p>
