@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Konum Listesi
+                        {{ $site_title }}
                         <a href="{{ url('/') }}" type="button" class="btn btn-primary btn-sm navigation-buttons"><i class="bi bi-arrow-return-left"></i>Anasayfa</a>
                     </div>
                     <div class="card-body">
@@ -34,8 +34,11 @@
                                         <td>{{ $location->latitude }}</td>
                                         <td>{{ $location->longitude }}</td>
                                         <td>
+                                            <a href="{{ url('/create-route/'.$location->id) }}" class="btn btn-success btn-sm"><i class="bi bi-map"></i> Rota Oluştur</a>
+                                            @if(!$create_route)
                                             <a href="{{ url('/update-location/'.$location->id) }}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
                                             <a href="{{ url('/location/'.$location->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            @endif
                                         </td>
                                     </tr> 
                                 @endforeach

@@ -17,3 +17,7 @@ Route::get('/locations', [LocationsController::class, 'listLocations']);
 Route::get('/location/{id}', function (string $id) {
     return LocationsController::getSingleLocation($id);
 });
+Route::get('/create-route/{id}', function (string $id) {
+    return LocationsController::createRoute($id);
+});
+Route::post('/create-route/{id}', [LocationsController::class, 'createRoutePost']);

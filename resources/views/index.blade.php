@@ -28,7 +28,7 @@
             </a>            
         </div>  
         <div class="col-md-4">
-            <a class="card bg-success text-white text-center p-3 map-process-card">
+            <a href="{{ url('/locations?create_route=1') }}" class="card bg-success text-white text-center p-3 map-process-card">
                 <blockquote class="blockquote mb-0">
                     <i class="bi bi-map"></i>
                     <p>Rotalama için tıklayın</p>

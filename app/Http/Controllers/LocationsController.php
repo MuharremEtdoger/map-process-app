@@ -7,7 +7,7 @@ use App\Models\Locations;
 
 
 class LocationsController extends Controller
-{   
+{     
     function addLocation(){
         $pageAssets=[
             'css'=>[
@@ -42,6 +42,22 @@ class LocationsController extends Controller
             ]
         );  
     }
+    static function routePostValidateControl($request){
+        $validated = $request->validate(
+            [
+                'latitude' => 'required|numeric|between:-90,90',
+                'longitude' => 'required|numeric|between:-180,180',
+            ],
+            [
+                'latitude.numeric' => 'Enlem numerik değer olmalıdır.',
+                'latitude.between' => 'Enlem değeri -90 ile +90 arası olmalıdır',
+                'latitude.required' => 'Enlem değeri zorunlu bir alandır',                
+                'longitude.numeric' => 'Boylam değeri numerik olmalıdır',
+                'longitude.between' => 'Enlem değeri -180 ile +180 arası olmalıdır',
+                'longitude.required' => 'Enlem değeri zorunlu bir alandır',  
+            ]
+        );  
+    }    
     function addLocationPost(Request $request){
         $token = $request->session()->token();
         $_token = $request->post('_token');
@@ -109,7 +125,7 @@ class LocationsController extends Controller
         }       
     }  
     public static function getYandexApiKey(){
-        $_key='7fc4bf85-4e46-4fb4-87e9-39a55e04904c';
+        $_key=env('YANDEX_API_KEY');
         return $_key;
     }     
     function listLocations(){
@@ -120,8 +136,15 @@ class LocationsController extends Controller
             'js'=>[
                 'https://api-maps.yandex.ru/2.1/?lang=tr_TR&apikey='.self::getYandexApiKey(),
             ],            
-        ];        
-        return view('locations.list',['locations'=>$locations,'pageAssets'=>$pageAssets,'site_title'=>$site_title]); 
+        ]; 
+        $create_route=0;       
+        if(isset($_GET['create_route'])){
+            if($_GET['create_route']){
+                $site_title='Rota Oluştur';
+                $create_route=1;   
+            }
+        }
+        return view('locations.list',['create_route'=>$create_route,'locations'=>$locations,'pageAssets'=>$pageAssets,'site_title'=>$site_title]); 
     } 
     static function getSingleLocation($id){
         
@@ -138,4 +161,29 @@ class LocationsController extends Controller
         $site_title=$location->name.' - Lokasyon';
         return view('locations.single',['location'=>$location,'pageAssets'=>$pageAssets,'site_title'=>$site_title]);
     } 
+    static function createRoute($id){
+        $location = Locations::where('id', $id)->first();  
+        if($location){
+
+        }else{
+            return redirect('/');
+        }        
+        $site_title='Rota Oluştur';
+        return view('locations.route',['location'=>$location,'site_title'=>$site_title]);        
+    }
+    static function createRoutePost(Request $request, $id){
+        self::routePostValidateControl($request);
+        $location = Locations::where('id', $id)->first();  
+        if($location){
+
+        }else{
+            return redirect('/');
+        }        
+        $site_title='Rota Oluştur';
+        $latitude = $request->post('latitude');
+        $longitude = $request->post('longitude');
+        $post_datas['latitude']=$latitude;
+        $post_datas['longitude']=$longitude;
+        return view('locations.route',['post_datas'=>$post_datas,'location'=>$location,'site_title'=>$site_title]);         
+    }
 }
