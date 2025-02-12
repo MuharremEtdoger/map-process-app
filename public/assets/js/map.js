@@ -68,3 +68,43 @@ if($('#map-show-area').length>0){
        $('.single .bg-overlay').css('display','none');
     }	
 }
+if($('#create-route-maps').length>0){
+    var _data_source=[] ,_data_target=[];
+    _data_source.push($('#create-route-maps').attr('data-source-latitude'));
+    _data_source.push($('#create-route-maps').attr('data-source-longitude'));
+    _data_target.push($('#create-route-maps').attr('data-target-latitude'));
+    _data_target.push($('#create-route-maps').attr('data-target-longitude'));
+    createRoute('create-route-maps',_data_source,_data_target);
+}
+function createRoute(divID, _data_source, _data_target) {
+	ymaps.ready(init);
+	function init() {
+        console.log(_data_source);
+        console.log(_data_target);
+		var myMap = new ymaps.Map(divID, {
+			center: [_data_source[0], _data_source[1]],
+			zoom: 15
+		}, {
+			searchControlProvider: 'yandex#search'
+		});
+		var myGeoObject = new ymaps.GeoObject({
+			geometry: {
+				type: "LineString",
+				coordinates: [
+					[_data_source[0], _data_source[1]],
+					[_data_target[0], _data_target[1]]
+				]
+			},
+			properties: {
+				hintContent: "I'm a geo object",
+				balloonContent: "You can drag me"
+			}
+		}, {
+			draggable: true,
+			strokeColor: "#1FFF15",
+			strokeWidth: 5
+		});
+        console.log(myGeoObject);
+        myMap.geoObjects.add(myGeoObject);
+	}
+}

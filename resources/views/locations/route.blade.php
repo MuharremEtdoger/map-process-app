@@ -13,6 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     Rota Oluştur
+                    <a href="{{ url('/locations?create_route=1') }}" type="button" class="btn btn-primary btn-sm navigation-buttons"><i class="bi bi-arrow-return-left"></i>Konumlar</a>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info" role="alert">
@@ -46,8 +47,13 @@
                             </div>                          
                         </div>
                     </form> 
+                    @if(isset($distance))
+                    <div class="alert alert-info" role="alert">
+                        {{ $distance }} KM
+                    </div>               
+                    @endif     
                     @if(isset($post_datas))
-                        <div class="create-route-maps" 
+                        <div id="create-route-maps" 
                             data-source-latitude="{{ $location->latitude }}" 
                             data-source-longitude="{{ $location->longitude }}" 
                             data-target-latitude="{{ $post_datas['latitude'] }}" 

@@ -184,6 +184,21 @@ class LocationsController extends Controller
         $longitude = $request->post('longitude');
         $post_datas['latitude']=$latitude;
         $post_datas['longitude']=$longitude;
-        return view('locations.route',['post_datas'=>$post_datas,'location'=>$location,'site_title'=>$site_title]);         
+        $distance=self::getDistanceTwoCoordinate($location->latitude,$location->longitude,$latitude,$longitude);
+        $pageAssets=[
+            'js'=>[
+                'https://api-maps.yandex.ru/2.1/?lang=tr_TR&apikey='.self::getYandexApiKey(),
+            ],            
+        ]; 
+        return view('locations.route',['distance'=>$distance,'pageAssets'=>$pageAssets,'post_datas'=>$post_datas,'location'=>$location,'site_title'=>$site_title]);         
     }
+    static function getDistanceTwoCoordinate($latitude1, $longitude1, $latitude2, $longitude2) {
+        $theta = $longitude1 - $longitude2; 
+        $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+        $distance = acos($distance); 
+        $distance = rad2deg($distance); 
+        $distance = $distance * 60 * 1.1515; 
+        $distance = $distance * 1.609344;       
+        return (round($distance,2));
+      }    
 }
