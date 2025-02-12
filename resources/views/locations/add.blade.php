@@ -5,6 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         Konum Ekle
+                        <a href="{{ url('/') }}" type="button" class="btn btn-primary btn-sm navigation-buttons"><i class="bi bi-arrow-return-left"></i>Anasayfa</a>
                     </div>
                     <div class="card-body">
                         @if($errors->any())

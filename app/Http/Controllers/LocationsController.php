@@ -113,5 +113,20 @@ class LocationsController extends Controller
         $locations = Locations::paginate($_per_page);
         $site_title='Konum Listesi';
         return view('locations.list',['locations'=>$locations,'site_title'=>$site_title]); 
-    }  
+    } 
+    static function getSingleLocation($id){
+        
+        $location = Locations::where('id', $id)->first();  
+        if($location){
+        }else{
+            return redirect('/');
+        }      
+        $pageAssets=[
+            'js'=>[
+                'https://api-maps.yandex.ru/2.1/?lang=tr_TR&amp;apikey=7fc4bf85-4e46-4fb4-87e9-39a55e04904c',
+            ],            
+        ];
+        $site_title=$location->name.' - Lokasyon';
+        return view('locations.single',['location'=>$location,'pageAssets'=>$pageAssets,'site_title'=>$site_title]);
+    } 
 }

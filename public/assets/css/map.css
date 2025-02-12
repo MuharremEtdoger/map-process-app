@@ -46,3 +46,17 @@
     padding-top: 30px;
     margin-top: 10px;
 }
+#map-show-area{
+    height: 400px;
+    width: 100%;
+}
+.navigation-buttons{
+    display: inline-block;
+    float: right;
+    margin-left: 15px;
+}
+.navigation-buttons i{
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: text-top;
+}

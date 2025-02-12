@@ -14,3 +14,6 @@ Route::get('/update-location/{id}', function (string $id) {
 });
 Route::post('/update-location/{id}', [LocationsController::class, 'updateLocationPost']);
 Route::get('/locations', [LocationsController::class, 'listLocations']);
+Route::get('/location/{id}', function (string $id) {
+    return LocationsController::getSingleLocation($id);
+});
