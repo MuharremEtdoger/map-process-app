@@ -42,7 +42,9 @@
                             @endif
                         <tbody>  
                     </table> 
-                    {{ $locations->links() }} 
+                    {{ $locations->links() }}
+                    <input type='hidden' name='locations_data' value="{{ json_encode($locations) }}">
+                    <div id="maps-show-area"></div> 
                     </div>    
                 </div>              
             </div>

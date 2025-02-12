@@ -25,7 +25,7 @@
                             </tr>                                                        
                         </tbody>
                     </table>
-                    <div id="map-show-area" data-latitude="{{ $location->latitude }}" data-longitude="{{ $location->longitude }}"></div>
+                    <div id="map-show-area" data-latitude="{{ $location->latitude }}" data-longitude="{{ $location->longitude }}" data-color="{{ $location->color }}"></div>
                 </div>    
             </div>            
         </div>

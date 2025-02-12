@@ -7,7 +7,7 @@ use App\Models\Locations;
 
 
 class LocationsController extends Controller
-{
+{   
     function addLocation(){
         $pageAssets=[
             'css'=>[
@@ -108,11 +108,20 @@ class LocationsController extends Controller
            exit;
         }       
     }  
+    public static function getYandexApiKey(){
+        $_key='7fc4bf85-4e46-4fb4-87e9-39a55e04904c';
+        return $_key;
+    }     
     function listLocations(){
         $_per_page=10;
         $locations = Locations::paginate($_per_page);
         $site_title='Konum Listesi';
-        return view('locations.list',['locations'=>$locations,'site_title'=>$site_title]); 
+        $pageAssets=[
+            'js'=>[
+                'https://api-maps.yandex.ru/2.1/?lang=tr_TR&apikey='.self::getYandexApiKey(),
+            ],            
+        ];        
+        return view('locations.list',['locations'=>$locations,'pageAssets'=>$pageAssets,'site_title'=>$site_title]); 
     } 
     static function getSingleLocation($id){
         
@@ -123,7 +132,7 @@ class LocationsController extends Controller
         }      
         $pageAssets=[
             'js'=>[
-                'https://api-maps.yandex.ru/2.1/?lang=tr_TR&amp;apikey=7fc4bf85-4e46-4fb4-87e9-39a55e04904c',
+                'https://api-maps.yandex.ru/2.1/?lang=tr_TR&apikey='.self::getYandexApiKey(),
             ],            
         ];
         $site_title=$location->name.' - Lokasyon';

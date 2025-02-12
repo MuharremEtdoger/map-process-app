@@ -50,6 +50,10 @@
     height: 400px;
     width: 100%;
 }
+#maps-show-area{
+    height: 400px;
+    width: 100%;
+}
 .navigation-buttons{
     display: inline-block;
     float: right;
